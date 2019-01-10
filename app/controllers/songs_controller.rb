@@ -43,7 +43,7 @@ class SongsController < ApplicationController
     binding.pry
 
     @song.song_genres.clear
-    params[:genres].each do |genre_id|
+    params[:genre].each do |genre_id|
        @song.genres << Genre.find(genre_id.to_i)
     end
 
