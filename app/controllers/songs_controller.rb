@@ -40,7 +40,7 @@ class SongsController < ApplicationController
     #binding.pry
     @song = Song.find_by_name(params[:song][:name])
     @song.update(params[:song])
-    binding.pry
+    #binding.pry
 
     @song.song_genres.clear
     params[:genre].each do |genre_id|
