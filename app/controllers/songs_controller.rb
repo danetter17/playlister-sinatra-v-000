@@ -41,17 +41,11 @@ class SongsController < ApplicationController
     @song = Song.find_by_name(params[:song][:name])
     @song.update(params[:song])
     binding.pry
-    @genres = Genre.all
-    #binding.pry
+
     @song.song_genres.clear
-    @genres.each do |genre|
-      song_genre = SongGenre.new(:song => @song, :genre => genre)
-      song_genre.save
+    params[:genres].each do |genre_id|
+       @song.genres << Genre.find(genre_id.to_i)
     end
-    @song.save
-    # Genre.all.each do |genre_id|
-    #   @song.genres << Genre.find(genre_id.to_i)
-    # end
 
     flash[:message] = "Successfully updated song."
     redirect to("/songs/#{@song.slug}")
